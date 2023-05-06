@@ -18,7 +18,7 @@ const dataTableOptions = {
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
         infoEmpty: "Ningún usuario encontrado",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
-        search: "Buscar:",
+        search: "Escribe el Nombre de tu Parroquia o Población  ======>:",
         loadingRecords: "Cargando...",
         paginate: {
             first: "Primero",
@@ -43,7 +43,7 @@ const initDataTable = async () => {
 
 const listUsers = async () => {
     try {
-        const response = await fetch("/users.json");
+        const response = await fetch("/DATA_TABLE/users.json");
         const users = await response.json();
 
         let content = ``;
@@ -51,15 +51,12 @@ const listUsers = async () => {
             content += `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${user.name}</td>
-                    <td>${user.email}</td>
                     <td>${user.address.city}</td>
-                    <td>${user.company.name}</td>
-                    <td><i class="fa-solid fa-check" style="color: green;"></i></td>
-                    <td>
-                        <button class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
+                    <td>${user.name}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.company.catchPhrase}</td>
+                    <td>${user.website}</td>
+                    <td>${user.company.bs}</td>
                 </tr>`;
         });
         tableBody_users.innerHTML = content;
